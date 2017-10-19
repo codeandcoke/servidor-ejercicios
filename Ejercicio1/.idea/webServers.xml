@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a3195ebb-a51a-4172-a637-55b17e299abe" name="Producción" url="http://217.182.169.85">
+        <fileTransfer host="217.182.169.85" port="22" rootFolder="/home/santi/public_html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="692acd2c-de6a-4f49-a971-4cd9fe96ef09" name="Pruebas" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="/var/www/html" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
