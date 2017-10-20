@@ -8,7 +8,7 @@ else
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Hola</title>
+    <title>Las Noticias</title>
     <link rel="stylesheet" href="css/bootstrap.css"/>
 </head>
 <body>
