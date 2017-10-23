@@ -1,3 +1,4 @@
+<br/>
 <?php
 include("config/configuracion.php");
 
@@ -9,7 +10,7 @@ $resultado = $sentencia->get_result();
 while ($fila = $resultado->fetch_row()) {
 ?>
     <!-- Extracto de noticia -->
-    <div class="card" style="width: 20rem;">
+    <div class="card" style="width: 150px;">
         <img class="card-img-top" src="img/noticia.jpg" alt="Imagen de noticia">
         <div class="card-body">
             <h4 class="card-title"><?= $fila[1] ?></h4>
@@ -18,6 +19,7 @@ while ($fila = $resultado->fetch_row()) {
                class="btn btn-primary">Leer más</a>
         </div>
     </div>
+    <br/>
 <?php
 }
 $sentencia->close();
