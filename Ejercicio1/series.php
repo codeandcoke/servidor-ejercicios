@@ -2,49 +2,51 @@
 if (isset($_REQUEST["dia"]))
     $dia = $_REQUEST["dia"];
 else
-    $dia = "lunes";
+    $dia = "Lunes";
 ?>
 <br/>
 <p>Programación de la semana</p>
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item">
-                <a class="nav-link active" href="?id=series&dia=lunes">Lunes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?id=series&dia=martes">Martes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?id=series&dia=miercoles">Miércoles</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?id=series&dia=jueves">Jueves</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?id=series&dia=viernes">Viernes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?id=series&dia=sabado">Sábado</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?id=series&dia=domingo">Domingo</a>
-            </li>
+<?php
+    $dias = array("Lunes", "Martes", "Miércoles", "Jueves",
+        "Viernes", "Sábado", "Domingo");
+
+    foreach ($dias as $diasemana) {
+?>
+        <li class="nav-item">
+            <a class="nav-link
+            <?php if ($dia == $diasemana) echo "active"; ?>"
+               href="?id=series&dia=<?= $diasemana ?>">
+                <?= $diasemana ?></a>
+        </li>
+<?php
+    }
+?>
         </ul>
     </div>
     <div class="card-body">
-        <h4 class="card-title">Programación del Lunes</h4>
+        <h4 class="card-title">Programación del <?= $dia ?></h4>
+<?php
+include("config/configuracion.php");
+
+$conexion = new mysqli(DB_HOST, DB_USUARIO, DB_PASSWORD, DB_NOMBRE);
+$sql = "SELECT id, hora, nombre FROM series WHERE dia = ? " .
+        "ORDER BY hora";
+$sentencia = $conexion->prepare($sql);
+$sentencia->bind_param("s", $dia);
+$sentencia->execute();
+$resultado = $sentencia->get_result();
+while ($fila = $resultado->fetch_row()) {
+?>
         <div class="alert alert-primary" role="alert">
-            21:00h Los Serrano
-            <a href="#" class="alert-link">Leer más</a>
+            <?= $fila[1] ?> <?= $fila[2] ?>
+            <a href="?id=serie&capitulo=<?= $fila[0] ?>"
+               class="alert-link">Leer más</a>
         </div>
-        <div class="alert alert-primary" role="alert">
-            22:00h Farmacia de Guardia
-            <a href="#" class="alert-link">Leer más</a>
-        </div>
-        <div class="alert alert-primary" role="alert">
-            23:30h Médico de Familia
-            <a href="#" class="alert-link">Leer más</a>
-        </div>
+<?php
+}
+?>
     </div>
 </div>
