@@ -66,32 +66,26 @@
         <?php
         include("config/configuracion.php");
 
-
+        $conexion = new mysqli(DB_HOST, DB_USUARIO, DB_PASSWORD, DB_NOMBRE);
+        $sql = "SELECT nombre, foto1, descripcion FROM viajes " .
+            "WHERE destacado = TRUE " .
+            "ORDER BY RAND() LIMIT 3";
+        $sentencia = $conexion->prepare($sql);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        while ($fila = $resultado->fetch_assoc()) {
         ?>
-        <div class="card" style="width: 20rem;">
-          <img class="card-img-top" src="img/google.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">Viaja a la sede de Google</h4>
-            <p class="card-text">Viaje a Silicon Valley</p>
-            <a href="#" class="btn btn-primary">Leer más</a>
-          </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-          <img class="card-img-top" src="img/microsoft.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">Viaja a Microsoft</h4>
-            <p class="card-text">Viaja a la sede del Sistema Operativo Windows</p>
-            <a href="#" class="btn btn-primary">Leer más</a>
-          </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-          <img class="card-img-top" src="img/marenostrum.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">Viaje al Marenostrum</h4>
-            <p class="card-text">Visita el supercomputador más potente de Europa</p>
-            <a href="#" class="btn btn-primary">Leer más</a>
-          </div>
-        </div>
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="img/<?= $fila["foto1"] ?>" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title"><?= $fila["nombre"] ?></h4>
+                    <p class="card-text"><?= $fila["descripcion"] ?></p>
+                    <a href="#" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
       </div>
 
       <hr>
