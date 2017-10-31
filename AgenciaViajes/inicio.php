@@ -1,14 +1,9 @@
 <div class="row">
     <?php
-    include("config/configuracion.php");
-
-    $conexion = new mysqli(DB_HOST, DB_USUARIO, DB_PASSWORD, DB_NOMBRE);
     $sql = "SELECT id, nombre, foto1, descripcion FROM viajes " .
         "WHERE destacado = TRUE " .
         "ORDER BY RAND() LIMIT 3";
-    $sentencia = $conexion->prepare($sql);
-    $sentencia->execute();
-    $resultado = $sentencia->get_result();
+    $resultado = lanzar_consulta($sql);
     while ($fila = $resultado->fetch_assoc()) {
         ?>
         <div class="card" style="width: 20rem;">

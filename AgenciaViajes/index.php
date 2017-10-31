@@ -33,7 +33,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Viajes</a>
@@ -50,7 +50,7 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="index.php" method="post">
+        <form class="form-inline my-2 my-lg-0" action="index.php" method="get">
           <input class="form-control mr-sm-2" name="texto" type="text" placeholder="Search" aria-label="Search">
             <input type="hidden" name="id" value="busqueda"/>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -59,16 +59,26 @@
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">Viajes Montessori</h1>
-        <p>Agencia de viajes especializada en Programadores</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Ver todos los viajes &raquo;</a></p>
-      </div>
-    </div>-
+    <?php
+    if ($id != "busqueda") {
+    ?>
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Viajes Montessori</h1>
+                <p>Agencia de viajes especializada en Programadores</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Ver todos los viajes &raquo;</a></p>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
 
     <div class="container">
+        <hr>
         <?php
+        include("config/configuracion.php");
+        include("include/funciones.php");
+
         include($id . ".php");
         ?>
 

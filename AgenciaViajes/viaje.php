@@ -1,6 +1,4 @@
 <?php
-include("config/configuracion.php");
-
 $id_viaje = $_REQUEST["id_viaje"];
 
 $conexion = new mysqli(DB_HOST, DB_USUARIO, DB_PASSWORD, DB_NOMBRE);
