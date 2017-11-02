@@ -1,12 +1,8 @@
 <?php
 $id_viaje = $_REQUEST["id_viaje"];
 
-$conexion = new mysqli(DB_HOST, DB_USUARIO, DB_PASSWORD, DB_NOMBRE);
 $sql = "SELECT * FROM viajes WHERE id = ?";
-$sentencia = $conexion->prepare($sql);
-$sentencia->bind_param("i", $id_viaje);
-$sentencia->execute();
-$resultado = $sentencia->get_result();
+$resultado = lanzar_consulta($sql, array($id_viaje));
 $viaje = $resultado->fetch_assoc();
 ?>
 <div class="card mb-3">
