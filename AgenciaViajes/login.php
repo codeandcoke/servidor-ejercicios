@@ -40,9 +40,15 @@ else
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       </form>
-        <div class="alert alert-danger" role="alert">
-            <?= $mensaje ?>
-        </div>
+        <?php
+        if ($mensaje != "") {
+        ?>
+            <div class="alert alert-danger" role="alert">
+                <?= $mensaje ?>
+            </div>
+        <?php
+        }
+        ?>
     </div> <!-- /container -->
   </body>
 </html>
