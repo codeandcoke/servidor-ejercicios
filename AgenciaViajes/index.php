@@ -1,8 +1,8 @@
 <?php
-    if (isset($_REQUEST["id"]))
-        $id = $_REQUEST["id"];
-    else
-        $id = "inicio";
+if (isset($_REQUEST["id"]))
+    $id = $_REQUEST["id"];
+else
+    $id = "inicio";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -17,4 +17,6 @@ if ($fila["cantidad"] == 0) {
     exit();
 }
 // Si coinciden
+session_start();
+$_SESSION["usuario"] = $usuario;
 header('Location: http://localhost/index.php?id=alta_viaje');

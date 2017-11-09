@@ -1,3 +1,8 @@
+<?php
+session_start();
+if (!isset($_SESSION["usuario"]))
+    header("location: http://localhost/login.php");
+?>
 <form action="nuevo_viaje.php" method="post" enctype="multipart/form-data">
     <div class="form-row">
         <div class="form-group col-md-6">
