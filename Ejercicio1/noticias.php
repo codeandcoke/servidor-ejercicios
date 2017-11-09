@@ -7,7 +7,7 @@ $sql = "SELECT id, titulo, SUBSTR(texto, 1, 30) AS extracto FROM noticias";
 $sentencia = $conexion->prepare($sql);
 $sentencia->execute();
 $resultado = $sentencia->get_result();
-while ($fila = $resultado->fetch_row()) {
+while ($fila = $resultado->fetch_row(MYSQLI_ASSOC)) {
 ?>
     <!-- Extracto de noticia -->
     <div class="card" style="width: 150px;">
