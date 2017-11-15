@@ -13,10 +13,10 @@ $resultado = lanzar_consulta($sql, array($usuario, $contrasena));
 $fila = $resultado->fetch_assoc();
 if ($fila["cantidad"] == 0) {
     // No coinciden
-    header('Location: http://localhost/login.php?mensaje=Usuario/Contraseña incorrectos');
+    header('Location: login.php?mensaje=Usuario/Contraseña incorrectos');
     exit();
 }
 // Si coinciden
 session_start();
 $_SESSION["usuario"] = $usuario;
-header('Location: http://localhost/index.php?id=alta_viaje');
+header('Location: index.php?id=alta_viaje');

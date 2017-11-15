@@ -5,6 +5,14 @@
       <webServer id="7a7975bd-2687-409c-b578-a96ad914fef2" name="Pruebas" url="http://localhost">
         <fileTransfer port="0" mountedRoot="/var/www/html" accessType="MOUNT" />
       </webServer>
+      <webServer id="64ef1fb6-bc60-4e44-8459-81831f140b1c" name="Produccion" url="http://servidor">
+        <fileTransfer host="servidor" port="22" rootFolder="/home/santi/public_html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

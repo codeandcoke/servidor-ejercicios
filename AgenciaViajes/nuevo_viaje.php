@@ -34,4 +34,4 @@ $sql = "INSERT INTO viajes (nombre, descripcion, foto1, foto2, fecha," .
 $resultado = lanzar_consulta($sql, array($nombre, $descripcion,
     $foto1, $foto2, $fecha, $duracion, $precio, $disponible, $destacado));
 
-//header("Location: http://localhost/index.php?id=alta_viaje");
+header("Location: index.php?id=alta_viaje");
