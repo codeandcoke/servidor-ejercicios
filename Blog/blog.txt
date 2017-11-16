@@ -1,0 +1,18 @@
+	Blog
+- Base de Datos -
+	usuarios (#id, usuario, contrasena,
+		  nombre, 
+	          perfil["Administrador", "Editor", 				 "Suscriptor"]) 
+	entradas (#id, titulo, fecha, texto,
+		  -id_usuario)
+	etiquetas (#id, etiqueta, -id_entrada)
+- Funcionalidades -
+	1. Ver las entradas del blog
+	2. Escribir entradas
+	3. Crear, editar y eliminar usuarios
+	4. Barra lateral
+		a. Acerca de
+		b. Listado etiquetas utilizadas
+		 con el número de entradas
+	5. Búsqueda de entradas
+	

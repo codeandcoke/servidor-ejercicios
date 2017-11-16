@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
+    <title>Mi blog</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,19 +22,19 @@
     <div class="blog-masthead">
         <div class="container">
             <nav class="nav">
-                <a class="nav-link active" href="#">Home</a>
-                <a class="nav-link" href="#">New features</a>
-                <a class="nav-link" href="#">Press</a>
-                <a class="nav-link" href="#">New hires</a>
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link active" href="index.php">Inicio</a>
+                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="#"></a>
             </nav>
         </div>
     </div>
 
     <div class="blog-header">
         <div class="container">
-            <h1 class="blog-title">The Bootstrap Blog</h1>
-            <p class="lead blog-description">An example blog template built with Bootstrap.</p>
+            <h1 class="blog-title">Mi blog</h1>
+            <p class="lead blog-description">Este es mi blog</p>
         </div>
     </div>
 </header>
@@ -49,17 +49,21 @@
             include("config/db.php");
             include("include/funciones.php");
 
-            $sql = "";
-            // Leer las entradas
+            $sql = "SELECT E.titulo, E.fecha, E.texto, U.id, U.nombre " .
+                "FROM entradas E, usuarios U WHERE E.id_usuario = U.id " .
+                "ORDER BY fecha DESC";
             $resultado = lanzar_consulta($sql);
-
-            // Cargar las entradas
-            while (true) {
+            while ($fila = $resultado->fetch_assoc()) {
+                $titulo = $fila["titulo"];
+                $fecha = $fila["fecha"];
+                $nombre = $fila["nombre"];
+                $id_usuario = $fila["id"];
+                $texto = $fila["texto"];
                 ?>
                 <div class="blog-post">
                     <h2 class="blog-post-title"><?= $titulo ?></h2>
-                    <p class="blog-post-meta"><?= $fecha ?>
-                        <a href="#"><?= $autor ?></a></p>
+                    <p class="blog-post-meta"><?= $fecha ?> por
+                        <a href="?id=autor&id_usuario=<?= $id_usuario ?>"><?= $nombre ?></a></p>
                     <?= $texto ?>
                 </div>
                 <?php
@@ -67,41 +71,32 @@
             ?>
 
             <nav class="blog-pagination">
-                <a class="btn btn-outline-primary" href="#">Older</a>
-                <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+                <a class="btn btn-outline-primary disabled" href="?i=0">Más antiguas</a>
+                <a class="btn btn-outline-primary disabled" href="?i=0">Más nuevas</a>
             </nav>
 
         </div><!-- /.blog-main -->
 
         <aside class="col-sm-3 ml-sm-auto blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
-                <h4>About</h4>
-                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet
-                    fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                <h4>Acerca de</h4>
+                <p>Este es el mejor blog del mundo.</p>
             </div>
             <div class="sidebar-module">
-                <h4>Archives</h4>
+                <h4>Etiquetas</h4>
                 <ol class="list-unstyled">
-                    <li><a href="#">March 2014</a></li>
-                    <li><a href="#">February 2014</a></li>
-                    <li><a href="#">January 2014</a></li>
-                    <li><a href="#">December 2013</a></li>
-                    <li><a href="#">November 2013</a></li>
-                    <li><a href="#">October 2013</a></li>
-                    <li><a href="#">September 2013</a></li>
-                    <li><a href="#">August 2013</a></li>
-                    <li><a href="#">July 2013</a></li>
-                    <li><a href="#">June 2013</a></li>
-                    <li><a href="#">May 2013</a></li>
-                    <li><a href="#">April 2013</a></li>
+                    <li><a href="?id=etiqueta&nombre=Tecnologia">Tecnología (4)</a></li>
+                    <li><a href="?id=etiqueta&nombre=Mi Vida">Mi vida (10)</a></li>
+                    <li><a href="?id=etiqueta&nombre=Eventos">Eventos (2)</a></li>
+                    <li><a href="?id=etiqueta&nombre=Clases">Clases (5)</a></li>
+                    <li><a href="?id=etiqueta&nombre=Películas">Películas (20)</a></li>
                 </ol>
             </div>
             <div class="sidebar-module">
-                <h4>Elsewhere</h4>
+                <h4>Enlaces</h4>
                 <ol class="list-unstyled">
-                    <li><a href="#">GitHub</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Facebook</a></li>
+                    <li><a href="http://servidor.codeandcoke.com">Apuntes</a></li>
+                    <li><a href="http://www.google.com">Google</a></li>
                 </ol>
             </div>
         </aside><!-- /.blog-sidebar -->
@@ -111,10 +106,10 @@
 </main><!-- /.container -->
 
 <footer class="blog-footer">
-    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.
+    <p>Plantilla de <a href="https://getbootstrap.com/">Bootstrap</a> por <a href="https://twitter.com/mdo">@mdo</a>.
     </p>
     <p>
-        <a href="#">Back to top</a>
+        <a href="index.php">Ir al principio</a>
     </p>
 </footer>
 

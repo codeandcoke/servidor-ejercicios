@@ -1,7 +1,7 @@
 <?php
 
 function lanzar_consulta($sql, $parametros = array()) {
-    $conexion = new mysqli(DB_HOST, DB_USUARIO, DB_PASSWORD, DB_NOMBRE);
+    $conexion = new mysqli(HOST_BD, USUARIO_BD, CONTRASENA_BD, NOMBRE_BD);
     $sentencia = $conexion->prepare($sql);
     if (!empty($parametros)) {
         $tipos = "";
