@@ -1,8 +1,7 @@
 <?php
 session_start();
-/*if (!$_SESSION["usuario"])
+if (!$_SESSION["usuario"])
     header("Location: ../login.php");
-*/
 
 if (isset($_REQUEST["id"]))
     $id = $_REQUEST["id"];
@@ -25,13 +24,14 @@ else
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
+    <script src="../libs/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="?id=inicio">Panel de Control</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+        <button class="navbar-toggler d-l   g-none" type="button" data-toggle="collapse"
                 data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
