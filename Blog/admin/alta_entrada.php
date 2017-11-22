@@ -13,15 +13,16 @@ $id_autor = $_SESSION["id"];
 $etiquetas = $_POST["etiquetas"];
 $etiquetas = explode(",", $etiquetas);
 
+$db = new Db();
 $sql = "INSERT INTO entradas (titulo, texto, fecha, id_usuario) " .
     "VALUES (?, ?, ?, ?)";
-lanzar_consulta($sql, array($titulo, $texto, $fecha, $id_autor));
+$db->lanzar_consulta($sql, array($titulo, $texto, $fecha, $id_autor));
 
-$id_entrada = mysqli_insert_id();
+$id_entrada = $db->ultimo_id();
 foreach ($etiquetas as $etiqueta) {
     $sql = "INSERT INTO etiquetas (etiqueta, id_entrada) VALUES " .
         "(?, ?)";
-    lanzar_consulta($sql, array($etiqueta, $id_entrada));
+    $db->lanzar_consulta($sql, array(trim($etiqueta), $id_entrada));
 }
-
+$db->desconectar();
 header("Location: index.php?id=entradas");

@@ -49,10 +49,11 @@
             include("config/db.php");
             include("include/funciones.php");
 
+            $db = new Db();
             $sql = "SELECT E.titulo, E.fecha, E.texto, U.id, U.nombre " .
                 "FROM entradas E, usuarios U WHERE E.id_usuario = U.id " .
                 "ORDER BY fecha DESC";
-            $resultado = lanzar_consulta($sql);
+            $resultado = $db->lanzar_consulta($sql);
             while ($fila = $resultado->fetch_assoc()) {
                 $titulo = $fila["titulo"];
                 $fecha = $fila["fecha"];
@@ -85,11 +86,19 @@
             <div class="sidebar-module">
                 <h4>Etiquetas</h4>
                 <ol class="list-unstyled">
-                    <li><a href="?id=etiqueta&nombre=Tecnologia">Tecnología (4)</a></li>
-                    <li><a href="?id=etiqueta&nombre=Mi Vida">Mi vida (10)</a></li>
-                    <li><a href="?id=etiqueta&nombre=Eventos">Eventos (2)</a></li>
-                    <li><a href="?id=etiqueta&nombre=Clases">Clases (5)</a></li>
-                    <li><a href="?id=etiqueta&nombre=Películas">Películas (20)</a></li>
+                    <?php
+                    $sql = "SELECT COUNT(*) AS cantidad, etiqueta " .
+                        "FROM etiquetas GROUP BY etiqueta";
+                    $resultado = $db->lanzar_consulta($sql);
+                    $db->desconectar();
+                    while ($fila = $resultado->fetch_assoc()) {
+                        ?>
+                        <li><a href="?id=etiqueta&nombre=<?= $fila["etiqueta"] ?>">
+                                <?= $fila["etiqueta"] ?> (<?= $fila["cantidad"] ?>)
+                            </a></li>
+                    <?php
+                    }
+                    ?>
                 </ol>
             </div>
             <div class="sidebar-module">

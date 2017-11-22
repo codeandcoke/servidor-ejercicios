@@ -14,10 +14,12 @@
         </thead>
         <tbody>
         <?php
+        $db = new Db();
         $sql = "SELECT id, titulo, SUBSTR(texto, 1, 30) AS texto, fecha " .
             "FROM entradas WHERE id_usuario = ? " .
             "ORDER BY fecha DESC";
-        $resultado = lanzar_consulta($sql, array($_SESSION["id"]));
+        $resultado = $db->lanzar_consulta($sql, array($_SESSION["id"]));
+        $db->desconectar();
         while ($fila = $resultado->fetch_assoc()) {
             $id = $fila["id"];
             $titulo = $fila["titulo"];
