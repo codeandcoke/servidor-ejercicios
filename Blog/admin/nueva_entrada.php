@@ -12,7 +12,14 @@
             <textarea name="texto" cols="20" rows="10" class="form-control" id="texto" placeholder="Texto"></textarea>
         </div>
     </div>
-    <button class="btn btn-primary" type="submit">Enviar</button>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" name="etiquetas" size="50" placeholder="Etiquetas (separadas por coma)" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <button class="btn btn-primary" type="submit">Enviar</button>
+    </div>
 </form>
 <script>
     CKEDITOR.replace("texto");

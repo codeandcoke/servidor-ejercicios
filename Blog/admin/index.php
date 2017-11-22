@@ -79,6 +79,8 @@ else
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
             <?php
+            include("../config/db.php");
+            include("../include/funciones.php");
             include($id . ".php");
             ?>
         </main>

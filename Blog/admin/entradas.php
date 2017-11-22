@@ -7,22 +7,35 @@
             <th>#</th>
             <th>Titulo</th>
             <th>Fecha</th>
-            <th>Autor</th>
             <th>Texto</th>
             <th> </th>
             <th> </th>
         </tr>
         </thead>
         <tbody>
-        <td>
-            <td>1,001</td>
-            <td>Mi primera entrada</td>
-            <td>2017-11-16</td>
-            <td>Santi</td>
-            <td>Bienvenido a mi blog</td>
-            <td><a class="btn btn-warning" href="?id=nueva_entrada&entrada=<?= $id ?>">Modificar</a></td>
-            <td><a class="btn btn-danger" href="eliminar_entrada.php?entrada=<?= $id ?>" onclick="return confirm('¿Estás seguro?');">Eliminar</a></td>
-        </tr>
+        <?php
+        $sql = "SELECT id, titulo, SUBSTR(texto, 1, 30) AS texto, fecha " .
+            "FROM entradas WHERE id_usuario = ? " .
+            "ORDER BY fecha DESC";
+        $resultado = lanzar_consulta($sql, array($_SESSION["id"]));
+        while ($fila = $resultado->fetch_assoc()) {
+            $id = $fila["id"];
+            $titulo = $fila["titulo"];
+            $texto = $fila["texto"];
+            $fecha = $fila["fecha"];
+            ?>
+            <tr>
+                <td><?= $id ?></td>
+                <td><?= $titulo ?></td>
+                <td><?= $fecha ?></td>
+                <td><?= $texto ?></td>
+                <td><a class="btn btn-warning" href="?id=nueva_entrada&entrada=<?= $id ?>">Modificar</a></td>
+                <td><a class="btn btn-danger" href="eliminar_entrada.php?entrada=<?= $id ?>"
+                       onclick="return confirm('¿Estás seguro?');">Eliminar</a></td>
+            </tr>
+            <?php
+        }
+        ?>
         </tbody>
     </table>
 </div>
