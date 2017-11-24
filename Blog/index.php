@@ -1,5 +1,12 @@
+<?php
+if (!isset($_REQUEST["id"]))
+    $id = "inicio";
+else
+    $id = $_REQUEST["id"];
+?>
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,39 +50,11 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-
             <?php
-            // Conectar con la Base de Datos
             include("config/db.php");
             include("include/funciones.php");
-
-            $db = new Db();
-            $sql = "SELECT E.titulo, E.fecha, E.texto, U.id, U.nombre " .
-                "FROM entradas E, usuarios U WHERE E.id_usuario = U.id " .
-                "ORDER BY fecha DESC";
-            $resultado = $db->lanzar_consulta($sql);
-            while ($fila = $resultado->fetch_assoc()) {
-                $titulo = $fila["titulo"];
-                $fecha = $fila["fecha"];
-                $nombre = $fila["nombre"];
-                $id_usuario = $fila["id"];
-                $texto = $fila["texto"];
-                ?>
-                <div class="blog-post">
-                    <h2 class="blog-post-title"><?= $titulo ?></h2>
-                    <p class="blog-post-meta"><?= $fecha ?> por
-                        <a href="?id=autor&id_usuario=<?= $id_usuario ?>"><?= $nombre ?></a></p>
-                    <?= $texto ?>
-                </div>
-                <?php
-            }
+            include ($id . ".php");
             ?>
-
-            <nav class="blog-pagination">
-                <a class="btn btn-outline-primary disabled" href="?i=0">Más antiguas</a>
-                <a class="btn btn-outline-primary disabled" href="?i=0">Más nuevas</a>
-            </nav>
-
         </div><!-- /.blog-main -->
 
         <aside class="col-sm-3 ml-sm-auto blog-sidebar">

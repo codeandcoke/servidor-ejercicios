@@ -3,6 +3,7 @@ class Db {
 
     private $conexion;
 
+
     function __construct() {
         $this->conectar();
     }
@@ -39,6 +40,10 @@ class Db {
         $sentencia->close();
 
         return $resultado;
+    }
+
+    function obtener_usuarios() {
+
     }
 
 }
