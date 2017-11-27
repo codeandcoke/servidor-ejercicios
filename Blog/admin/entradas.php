@@ -1,5 +1,6 @@
 <h2>Entradas del blog</h2>
-<p><a class="btn btn-primary" href="?id=nueva_entrada">Nueva Entrada</a></p>
+<p><a class="btn btn-primary" href="?id=nueva_entrada">Nueva Entrada</a>
+<a class="btn btn-warning" href="informe_entradas.php">Informe</a></p>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
