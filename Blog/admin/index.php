@@ -25,6 +25,28 @@ else
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
     <script src="../libs/ckeditor/ckeditor.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script type="text/javascript">
+        function actualizarCKEditor() {
+            for (instance in CKEDITOR.instances)
+                CKEDITOR.instances[instance].updateElement();
+        }
+
+        $(document).ready(function() {
+            $('#alta_entrada').ajaxForm({
+                success:function(response) {
+                    // Escribe el mensaje de respuesta
+                    $('#resultado').html(response);
+                    // Y resetear el formulario
+                    $('#alta_entrada').each(function() {
+                        this.reset();
+                    });
+                }
+            })
+        });
+    </script>
 </head>
 
 <body>
@@ -90,9 +112,6 @@ else
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <script src="../../../../assets/js/vendor/popper.min.js"></script>
 <script src="../../../../dist/js/bootstrap.min.js"></script>

@@ -12,12 +12,12 @@ if (isset($_REQUEST["entrada"])) {
 <?php
 if (isset($entrada)) {
 ?>
-<form action="modificar_entrada.php" method="post">
+<form id="alta_entrada" action="modificar_entrada.php" method="post">
 <?php
 }
 else {
 ?>
-<form action="alta_entrada.php" method="post">
+<form id="alta_entrada" action="alta_entrada.php" method="post">
 <?php
 }
 ?>
@@ -56,8 +56,9 @@ else {
     }
     ?>
     <div class="form-row">
-        <button class="btn btn-primary" type="submit">Enviar</button>
+        <button onclick="actualizarCKEditor()" class="btn btn-primary" type="submit">Enviar</button>
     </div>
+    <div id="resultado"></div>
 </form>
 <script>
     CKEDITOR.replace("texto");

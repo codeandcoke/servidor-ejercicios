@@ -10,7 +10,6 @@ $id = $_POST["id"];
 $titulo = $_POST["titulo"];
 $texto = $_POST["texto"];
 
-
 $db = new Db();
 $sql = "UPDATE entradas SET titulo = ?, texto = ? WHERE id = ?";
 $db->lanzar_consulta($sql, array($titulo, $texto, $id));
