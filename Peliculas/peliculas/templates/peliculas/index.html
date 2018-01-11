@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Listado de peliculas</h1>
+{% if lista_peliculas %}
+    <ul>
+        {% for pelicula in lista_peliculas %}
+            <li><a href="{% url 'peliculas' pelicula.id %}">{{ pelicula.titulo }} {{ pelicula.director }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</body>
+</html>
