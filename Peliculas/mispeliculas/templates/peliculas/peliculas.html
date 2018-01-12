@@ -1,0 +1,15 @@
+{% include 'peliculas/cabecera.html' %}
+
+<div class="container">
+{% if lista_peliculas %}
+    <ul>
+    {% for pelicula in lista_peliculas %}
+        <li>{{ pelicula.titulo }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay peliculas para mostrar</p>
+{% endif %}
+</div>
+
+{% include 'peliculas/pie.html' %}

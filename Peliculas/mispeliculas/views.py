@@ -4,9 +4,13 @@ from .models import Pelicula
 
 
 def index(request):
+    return render(request, 'peliculas/index.html')
+
+
+def peliculas(request):
     lista_peliculas = Pelicula.objects.all()
     contexto = {'lista_peliculas': lista_peliculas}
-    return render(request, 'peliculas/index.html', contexto)
+    return render(request, 'peliculas/peliculas.html', contexto)
 
 
 def get_pelicula(request, pelicula_id):
