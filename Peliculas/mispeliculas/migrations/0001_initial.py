@@ -46,6 +46,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='capitulo',
             name='serie',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='peliculas.Serie'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mispeliculas.Serie'),
         ),
     ]
