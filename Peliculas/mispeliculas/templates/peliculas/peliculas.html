@@ -5,7 +5,7 @@
         $("a.btn").click(function() {
             var element = $(this);
             $.ajax({
-               url: "/mispeliculas/eliminar_pelicula/" + $(this).attr("id"),
+               url: "/mispeliculas/eliminar_pelicula/" + element.attr("id"),
                dataType: 'json',
                success: function() {
                    element.parent().remove();
@@ -20,7 +20,6 @@
     <ul>
     {% for pelicula in lista_peliculas %}
         <li><a href="{% url 'pelicula' pelicula.id %}">{{ pelicula.titulo }}</a>
-        <!--<a href="{% url 'eliminar_pelicula' pelicula.id %}" class="btn btn-outline-danger btn-sm">X</a>-->
         <a id="{{ pelicula.id }}" href="#" class="btn btn-outline-danger btn-sm">X</a>
         </li>
     {% endfor %}

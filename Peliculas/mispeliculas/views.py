@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from .models import Pelicula
 import json
 
@@ -28,3 +28,11 @@ def eliminar_pelicula(request, pelicula_id):
     pelicula = Pelicula.objects.get(pk=pelicula_id)
     pelicula.delete()
     return HttpResponse(json.dumps({}), content_type='application/json')
+
+
+def nueva_pelicula(request):
+    return render(request, 'peliculas/nueva_pelicula.html')
+
+
+def anadir_pelicula(request):
+    return HttpResponseRedirect(reverse('nueva_pelicula'))

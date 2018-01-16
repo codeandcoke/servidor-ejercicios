@@ -1,0 +1,23 @@
+{% include 'peliculas/cabecera.html' %}
+
+<div class="container">
+    <form action="{% url 'anadir_pelicula' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Titulo</label>
+            <input type="text" name="titulo" size="10" class="form-control" id="exampleFormControlInput1" placeholder="Titulo">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Director</label>
+            <input type="text" name="director" class="form-control" id="exampleFormControlInput1" placeholder="Director">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Género</label>
+            <input type="text" name="genero" class="form-control" id="exampleFormControlInput1" placeholder="Género">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+<br/>
+
+{% include 'peliculas/pie.html' %}
