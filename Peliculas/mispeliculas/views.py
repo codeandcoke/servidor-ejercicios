@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from django.http import Http404
+from django.shortcuts import render, reverse
+from django.http import Http404, HttpResponse
 from .models import Pelicula
+import json
 
 
 def index(request):
@@ -23,5 +24,7 @@ def get_pelicula(request, pelicula_id):
     return render(request, 'peliculas/pelicula.html', contexto)
 
 
-
-
+def eliminar_pelicula(request, pelicula_id):
+    pelicula = Pelicula.objects.get(pk=pelicula_id)
+    pelicula.delete()
+    return HttpResponse(json.dumps({}), content_type='application/json')

@@ -1,10 +1,28 @@
 {% include 'peliculas/cabecera.html' %}
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("a.btn").click(function() {
+            var element = $(this);
+            $.ajax({
+               url: "/mispeliculas/eliminar_pelicula/" + $(this).attr("id"),
+               dataType: 'json',
+               success: function() {
+                   element.parent().remove();
+               }
+           });
+        });
+    });
+</script>
+
 <div class="container">
 {% if lista_peliculas %}
     <ul>
     {% for pelicula in lista_peliculas %}
-        <li>{{ pelicula.titulo }}</li>
+        <li><a href="{% url 'pelicula' pelicula.id %}">{{ pelicula.titulo }}</a>
+        <!--<a href="{% url 'eliminar_pelicula' pelicula.id %}" class="btn btn-outline-danger btn-sm">X</a>-->
+        <a id="{{ pelicula.id }}" href="#" class="btn btn-outline-danger btn-sm">X</a>
+        </li>
     {% endfor %}
     </ul>
 {% else %}

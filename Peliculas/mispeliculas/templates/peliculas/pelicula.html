@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>{{ pelicula.titulo }}</h1>
-<h2>{{ pelicula.director }}</h2>
-</body>
-</html>
+{% include 'peliculas/cabecera.html' %}
+
+<div class="container">
+    <h3>{{ pelicula.titulo }}</h3>
+    <h4>{{ pelicula.director }}</h4>
+</div>
+
+{% include 'peliculas/pie.html' %}
