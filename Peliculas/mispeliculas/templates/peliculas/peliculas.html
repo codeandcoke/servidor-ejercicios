@@ -1,3 +1,4 @@
+{% load static %}
 {% include 'peliculas/cabecera.html' %}
 
 <script type="text/javascript">
@@ -19,7 +20,9 @@
 {% if lista_peliculas %}
     <ul>
     {% for pelicula in lista_peliculas %}
-        <li><a href="{% url 'pelicula' pelicula.id %}">{{ pelicula.titulo }}</a>
+        <li>
+            <img height="50" width="50" src="{% static 'peliculas/' %}{{ pelicula.imagen.url }}"/>
+            <a href="{% url 'pelicula' pelicula.id %}">{{ pelicula.titulo }}</a>
         <a id="{{ pelicula.id }}" href="#" class="btn btn-outline-danger btn-sm">X</a>
         </li>
     {% endfor %}

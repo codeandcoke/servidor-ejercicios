@@ -1,7 +1,9 @@
 from django.shortcuts import render, reverse
 from django.http import Http404, HttpResponse, HttpResponseRedirect
-from .models import Pelicula
 import json
+
+from .models import Pelicula
+from .forms import PeliculaForm
 
 
 def index(request):
@@ -25,6 +27,7 @@ def get_pelicula(request, pelicula_id):
 
 
 def eliminar_pelicula(request, pelicula_id):
+
     pelicula = Pelicula.objects.get(pk=pelicula_id)
     pelicula.delete()
     return HttpResponse(json.dumps({}), content_type='application/json')
@@ -35,4 +38,16 @@ def nueva_pelicula(request):
 
 
 def anadir_pelicula(request):
-    return HttpResponseRedirect(reverse('nueva_pelicula'))
+    if request.method == 'POST':
+        form = PeliculaForm(request.POST, request.FILES)
+        if form.is_valid():
+            pelicula = Pelicula()
+            pelicula.titulo = form.cleaned_data['titulo']
+            pelicula.director = form.cleaned_data['director']
+            pelicula.genero = form.cleaned_data['genero']
+            pelicula.imagen = form.cleaned_data['imagen']
+            pelicula.save()
+        else:
+            return render(request, 'peliculas/nueva_pelicula.html', {'form': form})
+
+        return HttpResponseRedirect(reverse('nueva_pelicula'))

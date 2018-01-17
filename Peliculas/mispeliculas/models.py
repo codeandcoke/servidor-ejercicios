@@ -7,6 +7,7 @@ class Pelicula(models.Model):
     director = models.CharField(max_length=200)
     fecha = models.DateField
     descargada = models.BooleanField(default=False)
+    imagen = models.ImageField(upload_to='img')
 
     def __str__(self):
         return self.titulo

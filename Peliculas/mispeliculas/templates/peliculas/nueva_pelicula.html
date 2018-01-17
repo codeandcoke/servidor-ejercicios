@@ -1,7 +1,7 @@
 {% include 'peliculas/cabecera.html' %}
 
 <div class="container">
-    <form action="{% url 'anadir_pelicula' %}" method="post">
+    <form action="{% url 'anadir_pelicula' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
             <label for="exampleFormControlInput1">Titulo</label>
@@ -14,6 +14,10 @@
         <div class="form-group">
             <label for="exampleFormControlInput1">Género</label>
             <input type="text" name="genero" class="form-control" id="exampleFormControlInput1" placeholder="Género">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Imagen</label>
+            <input type="file" name="imagen" class="form-control" id="exampleFormControlInput1">
         </div>
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
