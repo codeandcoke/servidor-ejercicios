@@ -9,7 +9,7 @@
                url: "/mispeliculas/eliminar_pelicula/" + element.attr("id"),
                dataType: 'json',
                success: function() {
-                   element.parent().remove();
+                   element.parent().parent().parent().remove();
                }
            });
         });
@@ -17,19 +17,22 @@
 </script>
 
 <div class="container">
-{% if lista_peliculas %}
-    <ul>
-    {% for pelicula in lista_peliculas %}
-        <li>
-            <img height="50" width="50" src="{% static 'peliculas/' %}{{ pelicula.imagen.url }}"/>
-            <a href="{% url 'pelicula' pelicula.id %}">{{ pelicula.titulo }}</a>
-        <a id="{{ pelicula.id }}" href="#" class="btn btn-outline-danger btn-sm">X</a>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay peliculas para mostrar</p>
-{% endif %}
+    <div class="card-group">
+        {% for pelicula in lista_peliculas %}
+            <div class="card">
+                <img style="width:250px" class="card-img-top" src="{% static 'peliculas/' %}{{ pelicula.imagen.url }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pelicula.titulo }}</h5>
+                    <p class="card-text">{{ pelicula.genero }}</p>
+                </div>
+                <div class="card-footer">
+                    <div style="text-align:center">
+                        <a href="#" id="{{ pelicula.id }}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
-
+<br/>
 {% include 'peliculas/pie.html' %}
