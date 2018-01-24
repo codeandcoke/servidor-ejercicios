@@ -1,9 +1,11 @@
-from django.shortcuts import render, reverse
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.http import Http404, HttpResponse
+from django.contrib import messages
 import json
 
-from .models import Pelicula
-from .forms import PeliculaForm
+from .models import Pelicula, Director
+from .forms import PeliculaForm, DirectorForm
+from Peliculas.settings import PELICULAS_POR_PAGINA
 
 
 def index(request):
@@ -34,7 +36,9 @@ def eliminar_pelicula(request, pelicula_id):
 
 
 def nueva_pelicula(request):
-    return render(request, 'peliculas/nueva_pelicula.html')
+    form = PeliculaForm()
+    context = {'form': form}
+    return render(request, 'peliculas/nueva_pelicula.html', context)
 
 
 def anadir_pelicula(request):
@@ -48,6 +52,28 @@ def anadir_pelicula(request):
             pelicula.imagen = form.cleaned_data['imagen']
             pelicula.save()
         else:
+            print(form.errors)
             return render(request, 'peliculas/nueva_pelicula.html', {'form': form})
 
-        return HttpResponseRedirect(reverse('nueva_pelicula'))
+        messages.success(request, 'Pelicula registrada correctamente')
+        return redirect('nueva_pelicula')
+
+
+def nuevo_director(request):
+    form = DirectorForm()
+    context = {'form': form}
+    return render(request, 'peliculas/nuevo_director.html', context)
+
+
+def anadir_director(request):
+    if request.method == 'POST':
+        form = DirectorForm(request.POST, request.FILES)
+        if not form.is_valid():
+            return render(request, 'peliculas/nuevo_director.html', {'form': form})
+
+        director = Director()
+        director.nombre_apellidos = form.cleaned_data['nombre_apellidos']
+        director.nacionalidad = form.cleaned_data['nacionalidad']
+        director.save()
+        messages.success(request, 'Director registrado correctamente')
+        return redirect('nuevo_director')

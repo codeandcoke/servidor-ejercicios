@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mispeliculas.apps.PeliculasConfig',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = 'mispeliculas/static/peliculas'
+
+PELICULAS_POR_PAGINA = 5

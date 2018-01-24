@@ -1,26 +1,38 @@
 {% include 'peliculas/cabecera.html' %}
+{% load widget_tweaks %}
 
 <div class="container">
     <form action="{% url 'anadir_pelicula' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
-            <label for="exampleFormControlInput1">Titulo</label>
-            <input type="text" name="titulo" size="10" class="form-control" id="exampleFormControlInput1" placeholder="Titulo">
+            {% render_field form.titulo class='form-control' size='10' placeholder=form.titulo.label %}
+            {{ form.titulo.errors }}
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">Director</label>
-            <input type="text" name="director" class="form-control" id="exampleFormControlInput1" placeholder="Director">
+            {% render_field form.director class='form-control' %}
+            {{ form.director.errors }}
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">Género</label>
-            <input type="text" name="genero" class="form-control" id="exampleFormControlInput1" placeholder="Género">
+            {% render_field form.genero class='form-control' placeholder=form.genero.label %}
+            {{ form.genero.errors }}
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">Imagen</label>
-            <input type="file" name="imagen" class="form-control" id="exampleFormControlInput1">
+            {% render_field form.imagen class='form-control' %}
+            {{ form.imagen.errors }}
         </div>
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
+    <br/>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 </div>
 <br/>
 
