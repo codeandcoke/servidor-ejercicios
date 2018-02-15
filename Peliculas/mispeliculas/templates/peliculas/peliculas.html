@@ -1,0 +1,41 @@
+{% load static %}
+{% include 'peliculas/cabecera.html' %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("a.btn").click(function() {
+            var element = $(this);
+            $.ajax({
+               url: "/mispeliculas/eliminar_pelicula/" + element.attr("id"),
+               dataType: 'json',
+               success: function() {
+                   element.parent().parent().parent().remove();
+               }
+           });
+        });
+    });
+</script>
+
+<div class="container">
+    <div class="card-group">
+        {% for pelicula in lista_peliculas %}
+            <div class="card">
+                <img style="width:250px" class="card-img-top" src="{% static 'peliculas/' %}{{ pelicula.imagen.url }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pelicula.titulo }}</h5>
+                    <p class="card-text">{{ pelicula.genero }}</p>
+                    {% if pelicula.director %}
+                        <p class="card-text">{{ pelicula.director.nombre_apellidos }}</p>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <div style="text-align:center">
+                        <a href="#" id="{{ pelicula.id }}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<br/>
+{% include 'peliculas/pie.html' %}

@@ -1,0 +1,30 @@
+{% include 'peliculas/cabecera.html' %}
+{% load widget_tweaks %}
+
+<div class="container">
+    <form action="{% url 'anadir_director' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Nombre y Apellidos</label>
+            {% render_field form.nombre_apellidos class='form-control' size='10' placeholder=form.nombre_apellidos.label %}
+            {{ form.nombre_apellidos.errors }}
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Nacionalidad</label>
+            {% render_field form.nacionalidad class='form-control' size='10' placeholder=form.nacionalidad.label %}
+            {{ form.nacionalidad.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+    <br/>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+</div>
+<br/>
+
+{% include 'peliculas/pie.html' %}

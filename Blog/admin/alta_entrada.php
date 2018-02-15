@@ -25,4 +25,4 @@ foreach ($etiquetas as $etiqueta) {
     $db->lanzar_consulta($sql, array(trim($etiqueta), $id_entrada));
 }
 $db->desconectar();
-header("Location: index.php?id=entradas");
+echo "La entrada ha sido dada de alta correctamente";
