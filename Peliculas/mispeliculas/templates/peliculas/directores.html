@@ -1,0 +1,34 @@
+{% load static %}
+{% include 'peliculas/cabecera.html' %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("a.btn.btn-danger").click(function() {
+            if (confirm("¿Está seguro?")) {
+                var element = $(this);
+                $.ajax({
+                    url: "/eliminar_director/" + element.attr("id"),
+                    dataType: 'json',
+                    success: function () {
+                        element.parent().remove();
+                    }
+
+                });
+            }
+        });
+    });
+</script>
+
+<div class="container">
+    <div class="card-group">
+    <ul>
+        {% for director in lista_directores %}
+            <li style="padding:10px">{{ director.nombre_apellidos }}, {{ director.nacionalidad }}
+                <a class="btn btn-warning" href="{% url 'nuevo_director' director.id %}">Modificar</a>
+                <a class="btn btn-danger" id="{{ director.id }}">Eliminar</a></li>
+        {% endfor %}
+    </ul>
+    </div>
+</div>
+<br/>
+{% include 'peliculas/pie.html' %}

@@ -59,9 +59,14 @@ def anadir_pelicula(request):
         return redirect('nueva_pelicula')
 
 
-def nuevo_director(request):
-    form = DirectorForm()
-    context = {'form': form}
+def nuevo_director(request, director_id=None):
+    if director_id:
+        director = Director.objects.get(pk=director_id)
+        form = DirectorForm(instance=director)
+    else:
+        form = DirectorForm()
+
+    context = {'form': form, 'director_id': director_id}
     return render(request, 'peliculas/nuevo_director.html', context)
 
 
@@ -71,9 +76,30 @@ def anadir_director(request):
         if not form.is_valid():
             return render(request, 'peliculas/nuevo_director.html', {'form': form})
 
-        director = Director()
-        director.nombre_apellidos = form.cleaned_data['nombre_apellidos']
-        director.nacionalidad = form.cleaned_data['nacionalidad']
-        director.save()
+        form.save()
         messages.success(request, 'Director registrado correctamente')
         return redirect('nuevo_director')
+
+
+def modificar_director(request):
+    if request.method == 'POST':
+        director_id = request.POST['director_id']
+        director = Director.objects.get(pk=director_id)
+        form = DirectorForm(request.POST, request.FILES, instance=director)
+        if not form.is_valid():
+            return render(request, 'peliculas/nuevo_director.html', {'form': form})
+
+        form.save()
+        return redirect('directores')
+
+
+def directores(request):
+    lista_directores = Director.objects.all()
+    contexto = {'lista_directores': lista_directores}
+    return render(request, 'peliculas/directores.html', contexto)
+
+
+def eliminar_director(request, director_id):
+    director = Director.objects.get(pk=director_id)
+    director.delete()
+    return HttpResponse(json.dumps({}), content_type='application/json')

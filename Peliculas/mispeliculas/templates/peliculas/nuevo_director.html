@@ -2,7 +2,11 @@
 {% load widget_tweaks %}
 
 <div class="container">
+    {% if director_id %}
+    <form action="{% url 'modificar_director' %}" method="post">
+    {% else %}
     <form action="{% url 'anadir_director' %}" method="post">
+    {% endif %}
         {% csrf_token %}
         <div class="form-group">
             <label for="exampleFormControlInput1">Nombre y Apellidos</label>
@@ -14,7 +18,12 @@
             {% render_field form.nacionalidad class='form-control' size='10' placeholder=form.nacionalidad.label %}
             {{ form.nacionalidad.errors }}
         </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        {% if director_id %}
+        <input type="hidden" name="director_id" value="{{ director_id }}"/>
+        <button type="submit" class="btn btn-primary">Modificar</button>
+        {% else %}
+        <button type="submit" class="btn btn-primary">Alta</button>
+        {% endif %}
     </form>
     <br/>
     {% if messages %}

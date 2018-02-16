@@ -6,7 +6,7 @@
         $("a.btn").click(function() {
             var element = $(this);
             $.ajax({
-               url: "/mispeliculas/eliminar_pelicula/" + element.attr("id"),
+               url: "/eliminar_pelicula/" + element.attr("id"),
                dataType: 'json',
                success: function() {
                    element.parent().parent().parent().remove();
