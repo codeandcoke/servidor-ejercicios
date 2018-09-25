@@ -16,6 +16,42 @@ include("includes/header.php");
             </li>
         </ul>
     </nav>
+    <?php
+    include("includes/configuracion.php");
+
+    $conexion = new mysqli(DB_HOST, DB_USUARIO, DB_PASSWORD, DB_NOMBRE);
+    if ($conexion->connect_error) {
+        echo "<p>Se ha producido un error al conectar con la base de datos</p>";
+        exit();
+    }
+
+    // Consulta
+    /*
+     * Varias lineas
+     * de comentario
+     */
+    $sql = "SELECT * FROM fotos";
+    $sentencia = $conexion->prepare($sql);
+    $sentencia->execute();
+    $resultado = $sentencia->get_result();
+    while ($fila = $resultado->fetch_row()) {
+    ?>
+        <div class="card">
+            <img class="card-img-top" src="<?= PATH_IMAGENES . $fila[3] ?>"
+                 alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><?= $fila[1] ?></h5>
+                <p class="card-text"><?= $fila[2] ?></p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted"><?= $fila[5] ?></small>
+            </div>
+        </div>
+    <?php
+    }
+    $sentencia->close();
+    $conexion->close();
+    ?>
     <div class="card-group">
         <div class="card">
             <img class="card-img-top" src="imagenes/foto_ejemplo.jpg" alt="Card image cap">
