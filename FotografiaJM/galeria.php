@@ -16,6 +16,7 @@ include("includes/header.php");
             </li>
         </ul>
     </nav>
+    <div class="card-group">
     <?php
     include("includes/configuracion.php");
 
@@ -25,11 +26,6 @@ include("includes/header.php");
         exit();
     }
 
-    // Consulta
-    /*
-     * Varias lineas
-     * de comentario
-     */
     $sql = "SELECT * FROM fotos";
     $sentencia = $conexion->prepare($sql);
     $sentencia->execute();
@@ -52,70 +48,8 @@ include("includes/header.php");
     $sentencia->close();
     $conexion->close();
     ?>
-    <div class="card-group">
-        <div class="card">
-            <img class="card-img-top" src="imagenes/foto_ejemplo.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="imagenes/foto_ejemplo.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="imagenes/foto_ejemplo.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
     </div>
-    <div class="card-group">
-        <div class="card">
-            <img class="card-img-top" src="imagenes/foto_ejemplo.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="imagenes/foto_ejemplo.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="imagenes/foto_ejemplo.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-    </div>
+
     <br/>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
