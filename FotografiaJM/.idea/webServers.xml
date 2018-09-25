@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d5afde29-c2f5-4bda-9a04-8cf85469148b" name="Servidor Pruebas" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\xampp\htdocs\holamundo" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
