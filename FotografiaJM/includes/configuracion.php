@@ -5,3 +5,5 @@ define("DB_HOST", "localhost");
 define("DB_NOMBRE", "fjm");
 
 define("PATH_IMAGENES", "imagenes/");
+
+define("TAMANO_PAGINA", 3);
